@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: crypto-market-event-data-service
+  labels:
+    commit: ${WERCKER_GIT_COMMIT}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crypto-market-event-data-service
+  template:
+    metadata:
+      labels:
+        app: crypto-market-event-data-service
+        commit: ${WERCKER_GIT_COMMIT}
+    spec:
+      containers:
+      - name: crypto-market-event-data-service
+        image: ${GCR_TAG}:${WERCKER_GIT_COMMIT}
+        ports:
+        - name: get-ip-server
+          containerPort: 8080
+          protocol: TCP
