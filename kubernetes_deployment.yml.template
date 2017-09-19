@@ -19,6 +19,6 @@ spec:
       - name: crypto-market-event-data-service
         image: ${GCR_TAG}:${WERCKER_GIT_COMMIT}
         ports:
-        - name: crypto-market-event-data-service
+        - name: meds-health
           containerPort: 8080
           protocol: TCP
