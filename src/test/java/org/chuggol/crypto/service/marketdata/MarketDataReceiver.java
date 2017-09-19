@@ -19,7 +19,7 @@ public class MarketDataReceiver implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
-        TopicName topicName = TopicName.create("crypto-175617", "inbound-trades");
+        LOG.info("Creating subscription");
         SubscriptionName subscriptionName = SubscriptionName.create("crypto-175617", "inbound-trades-to-market-event-data-service");
         Subscriber subscriber = Subscriber.defaultBuilder(subscriptionName, new MessageReceiver() {
             @Override
