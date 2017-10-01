@@ -13,6 +13,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.Charset;
+
 @Service
 public class MarketDataReceiver implements ApplicationRunner {
     private static final Logger LOG = LoggerFactory.getLogger(MarketDataReceiver.class);
@@ -24,10 +26,12 @@ public class MarketDataReceiver implements ApplicationRunner {
         Subscriber subscriber = Subscriber.defaultBuilder(subscriptionName, new MessageReceiver() {
             @Override
             public void receiveMessage(PubsubMessage pubsubMessage, AckReplyConsumer ackReplyConsumer) {
-                LOG.info("Received: {}", pubsubMessage.getData().toString());
+                ByteString data = pubsubMessage.getData();
+                LOG.info("Received: {}", data.toString(Charset.defaultCharset()));
                 ackReplyConsumer.ack();
             }
         }).build();
+        subscriber.startAsync();
 
     }
 }
