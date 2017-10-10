@@ -6,7 +6,13 @@ build:
     - script:
         code: cp $WERCKER_SOURCE_DIR/target/crypto-market-event-data-service.jar /app.jar
     - internal/docker-push:
-        cmd: "java -XX:+PrintFlagsFinal -Djava.security.egd=file:/dev/./urandom -jar /app.jar"
+        cmd: >
+          "java -XX:+PrintFlagsFinal
+          -DMEDS_DATASOURCE_INSTANCE=${MEDS_DATASOURCE_INSTANCE}
+          -DMEDS_DATASOURCE_DATABASE=${MEDS_DATASOURCE_DATABASE}
+          -DMEDS_DATASOURCE_USER=${MEDS_DATASOURCE_USER}
+          -DMEDS_DATASOURCE_PASSWORD=${MEDS_DATASOURCE_PASSWORD}
+          -Djava.security.egd=file:/dev/./urandom -jar /app.jar"
         ports: "8080"
         tag: ${WERCKER_GIT_COMMIT}
         username: _json_key
