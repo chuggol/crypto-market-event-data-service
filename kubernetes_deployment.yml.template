@@ -35,7 +35,7 @@ spec:
         - name: MEDS_DATASOURCE_INSTANCE
           valueFrom:
             secretKeyRef:
-            name: meds-datasource-secret
+              name: meds-datasource-secret
               key: instance
         - name: MEDS_DATASOURCE_DATABASE
           valueFrom:
