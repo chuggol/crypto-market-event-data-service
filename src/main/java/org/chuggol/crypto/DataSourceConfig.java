@@ -1,5 +1,8 @@
 package org.chuggol.crypto;
 
+import org.chuggol.crypto.service.marketdata.MarketDataReceiver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +14,7 @@ import javax.sql.DataSource;
 
 @Configuration
 public class DataSourceConfig {
+    private static final Logger LOG = LoggerFactory.getLogger(DataSourceConfig.class);
 
     @Bean
     @Primary
@@ -22,6 +26,10 @@ public class DataSourceConfig {
                 env.getRequiredProperty("MEDS_DATASOURCE_INSTANCE"),
                 com.google.cloud.sql.mysql.SocketFactory.class.getCanonicalName()
         );
+
+        LOG.info("url={}", url);
+        LOG.info("MEDS_DATASOURCE_USER={}", env.getRequiredProperty("MEDS_DATASOURCE_USER"));
+        LOG.info("MEDS_DATASOURCE_PASSWORD={}", env.getRequiredProperty("MEDS_DATASOURCE_PASSWORD"));
 
         return DataSourceBuilder
                 .create()
