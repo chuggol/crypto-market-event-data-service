@@ -15,6 +15,10 @@ spec:
         app: crypto-market-event-data-service
         commit: ${WERCKER_GIT_COMMIT}
     spec:
+      volumes:
+      - name: google-cloud-key
+        secret:
+          secretName: market-event-data-service-key
       containers:
       - name: crypto-market-event-data-service
         image: ${GCR_TAG}:${WERCKER_GIT_COMMIT}
