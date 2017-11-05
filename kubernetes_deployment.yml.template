@@ -22,3 +22,24 @@ spec:
         - name: meds-health
           containerPort: 8080
           protocol: TCP
+        env:
+          - name: MEDS_DATASOURCE_INSTANCE
+            valueFrom:
+              secretKeyRef:
+                name: meds-datasource-secret
+                key: instance
+          - name: MEDS_DATASOURCE_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: meds-datasource-secret
+                key: database
+          - name: MEDS_DATASOURCE_USER
+            valueFrom:
+              secretKeyRef:
+                name: meds-datasource-secret
+                key: user
+          - name: MEDS_DATASOURCE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: meds-datasource-secret
+                key: password
