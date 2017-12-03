@@ -17,7 +17,7 @@ public class DataSourceTestConfig {
     @Primary
     public DataSource getDataSource(Environment env) {
         JdbcDataSource ds = new JdbcDataSource();
-        ds.setURL("jdbc:h2:mem:test");
+        ds.setURL("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
         ds.setUser("sa");
         ds.setPassword("sa");
         return ds;

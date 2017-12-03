@@ -18,8 +18,6 @@ public class TradeController {
 
     @RequestMapping("/trades")
     public List<Trade> getTrades() {
-
-        ArrayList<Trade> trades = Lists.newArrayList();
-        return trades;
+        return Lists.newArrayList(repository.findAll());
     }
 }

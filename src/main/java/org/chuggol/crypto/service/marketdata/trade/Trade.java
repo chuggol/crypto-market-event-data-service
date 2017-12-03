@@ -1,5 +1,9 @@
 package org.chuggol.crypto.service.marketdata.trade;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -10,6 +14,9 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 @Entity
+@Builder
+@AllArgsConstructor
+@Getter
 public class Trade {
     @Id
     private String id;
@@ -20,6 +27,8 @@ public class Trade {
     private BigDecimal price;
     private BigDecimal quantity;
     private String side;
+
+    public Trade() {}
 
 
     @Override
