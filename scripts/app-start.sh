@@ -5,4 +5,6 @@ java -XX:+PrintFlagsFinal \
   -DMEDS_DATASOURCE_DATABASE=$MEDS_DATASOURCE_DATABASE \
   -DMEDS_DATASOURCE_USER=$MEDS_DATASOURCE_USER \
   -DMEDS_DATASOURCE_PASSWORD=$MEDS_DATASOURCE_PASSWORD \
-  -Djava.security.egd=file:/dev/./urandom -jar /app.jar
+  -Djava.security.egd=file:/dev/./urandom
+  -Dspring.profiles.active=prod
+  -jar /app.jar

@@ -1,14 +1,10 @@
 package org.chuggol.crypto.service.marketdata;
 
-import org.chuggol.crypto.DataSourceConfig;
+import org.chuggol.crypto.service.marketdata.infra.persistence.DataSourceConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.*;
-
-import javax.sql.DataSource;
 
 @SpringBootApplication
 @Configuration
