@@ -22,7 +22,7 @@ public class DataSourceConfig {
     public DataSource getDataSource(Environment env) {
 
         String url = String.format(
-                "jdbc:mysql://google/%s?cloudSqlInstance=%s&socketFactory=%s",
+                "jdbc:mysql://google/%s?cloudSqlInstance=%s&socketFactory=%s&autoReconnect=true",
                 env.getRequiredProperty("MEDS_DATASOURCE_DATABASE"),
                 env.getRequiredProperty("MEDS_DATASOURCE_INSTANCE"),
                 com.google.cloud.sql.mysql.SocketFactory.class.getCanonicalName()
