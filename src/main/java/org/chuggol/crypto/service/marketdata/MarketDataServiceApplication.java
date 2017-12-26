@@ -10,7 +10,7 @@ import org.springframework.context.annotation.*;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
-@Import(DataSourceConfig.class)
+@Import({DataSourceConfig.class})
 public class MarketDataServiceApplication {
 
     public static void main(String[] args) {

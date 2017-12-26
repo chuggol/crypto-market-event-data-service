@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="chuggol">
+        <preConditions onFail="MARK_RAN">
+            <not><tableExists tableName="trade" /></not>
+        </preConditions>
+
+        <createTable tableName="trade">
+            <column name="id" type="varchar(50)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="currency" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="market" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="side" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="traded_asset" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="decimal(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="decimal(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
