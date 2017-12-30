@@ -2,15 +2,14 @@ package org.chuggol.crypto.service.marketdata.infra.persistence;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
-
-import javax.sql.DataSource;
 
 @Configuration
 @Profile("prod")
@@ -19,7 +18,8 @@ public class DataSourceConfig {
 
     @Bean
     @Primary
-    public DataSource getDataSource(Environment env) {
+    @ConfigurationProperties(prefix = "spring.datasource")
+    public DataSourceProperties getDataSource(Environment env) {
 
         String url = String.format(
                 "jdbc:mysql://google/%s?cloudSqlInstance=%s&socketFactory=%s&autoReconnect=true&nullNamePatternMatchesAll=true",
@@ -28,12 +28,12 @@ public class DataSourceConfig {
                 com.google.cloud.sql.mysql.SocketFactory.class.getCanonicalName()
         );
 
-        return DataSourceBuilder
-                .create()
-                .url( url )
-                .username( env.getRequiredProperty("MEDS_DATASOURCE_USER") )
-                .password( env.getRequiredProperty("MEDS_DATASOURCE_PASSWORD") )
-                .build();
+        DataSourceProperties properties = new DataSourceProperties();
+        properties.setUrl(url);
+        properties.setUsername(env.getRequiredProperty("MEDS_DATASOURCE_USER"));
+        properties.setPassword(env.getRequiredProperty("MEDS_DATASOURCE_PASSWORD"));
+
+        return properties;
     }
 
     @Bean
